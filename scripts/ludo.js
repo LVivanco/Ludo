@@ -9,6 +9,7 @@ const turno_text = document.getElementById('turno');
 const winner = document.getElementById('winner');
 
 var valor = 0;
+var valor_image = ['<img id="start" class="start" src="./images/dado/dice.svg"></img>', '<img class="valor" src="./images/dado/1.svg"></img>', '<img class="valor" src="./images/dado/2.svg"></img>', '<img class="valor" src="./images/dado/3.svg"></img>', '<img class="valor" src="./images/dado/4.svg"></img>', '<img class="valor" src="./images/dado/5.svg"></img>', '<img class="valor" src="./images/dado/6.svg"></img>']
 //var valor_i = 0;
 var position = positionInit;
 var walk = routes;
@@ -25,7 +26,7 @@ var fichas = [{
     },
     {
         color: 'yellow',
-        image: '<img src="./images/fichas/yellow.svg" alt="">',
+        image: '<img id="fichaYellow" src="./images/fichas/yellow.svg" alt="">',
         win: false,
         current: 0,
         currentX: 0,
@@ -33,7 +34,7 @@ var fichas = [{
     },
     {
         color: 'green',
-        image: '<img src="./images/fichas/green.svg" alt="">',
+        image: '<img id="fichaGreen" src="./images/fichas/green.svg" alt="">',
         win: false,
         current: 0,
         currentX: 0,
@@ -41,7 +42,7 @@ var fichas = [{
     },
     {
         color: 'blue',
-        image: '<img src="./images/fichas/blue.svg" alt="">',
+        image: '<img id="fichaBlue" src="./images/fichas/blue.svg" alt="">',
         win: false,
         current: 0,
         currentX: 0,
@@ -51,6 +52,7 @@ var fichas = [{
 
 start.addEventListener('click', (ev) => {
     dado.style.visibility = 'visible';
+    turno_text.style.color = players[turno];
     turno_text.innerHTML = players[turno];
     start.style.visibility = 'hidden';
 });
@@ -62,7 +64,7 @@ reiniciar.addEventListener('click', (ev) => {
 
 function tiroDado() {
     let num = Math.floor(Math.random() * (7 - 1) + 1);
-    text.innerHTML = num;
+    text.innerHTML = valor_image[num];
     valor = num;
 }
 
@@ -78,9 +80,17 @@ function step(initial, next, turn) {
                     if (e.dataset.routeRed == walk) {
                         //console.log(e);
                         walk = e.dataset.routeRed;
-                        e.innerHTML = fichas[0].image;
+                        e.innerHTML = fichas[turn].image;
                         let image = document.getElementById('fichaRed');
-                        image.dataset.position = walk;
+                        if (image != null) {
+                            image.dataset.position = walk;
+                            image.dataset.cordsX = e.dataset.coordsX;
+                            image.dataset.cordsY = e.dataset.coordsY;
+                            fichas[turn].currentX = e.dataset.coordsX;
+                            fichas[turn].currentY = e.dataset.coordsY;
+                        } else {
+                            alert('ERROR!');
+                        }
                         if (walk == 56) {
                             fichas[0].win = true;
                         }
@@ -91,9 +101,17 @@ function step(initial, next, turn) {
                     if (e.dataset.routeYellow == walk) {
                         //console.log(e);
                         walk = e.dataset.routeYellow;
-                        e.innerHTML = fichas[1].image;
-                        let image = document.getElementById('fichaRed');
-                        image.dataset.position = walk;
+                        e.innerHTML = fichas[turn].image;
+                        let image = document.getElementById('fichaYellow');
+                        if (image != null) {
+                            image.dataset.position = walk;
+                            image.dataset.cordsX = e.dataset.coordsX;
+                            image.dataset.cordsY = e.dataset.coordsY;
+                            fichas[turn].currentX = e.dataset.coordsX;
+                            fichas[turn].currentY = e.dataset.coordsY;
+                        } else {
+                            alert('ERROR!');
+                        }
                         if (walk == 56) {
                             fichas[1].win = true;
                         }
@@ -104,9 +122,17 @@ function step(initial, next, turn) {
                     if (e.dataset.routeGreen == walk) {
                         //console.log(e);
                         walk = e.dataset.routeGreen;
-                        e.innerHTML = fichas[2].image;
-                        let image = document.getElementById('fichaRed');
-                        image.dataset.position = walk;
+                        e.innerHTML = fichas[turn].image;
+                        let image = document.getElementById('fichaGreen');
+                        if (image != null) {
+                            image.dataset.position = walk;
+                            image.dataset.cordsX = e.dataset.coordsX;
+                            image.dataset.cordsY = e.dataset.coordsY;
+                            fichas[turn].currentX = e.dataset.coordsX;
+                            fichas[turn].currentY = e.dataset.coordsY;
+                        } else {
+                            alert('ERROR!');
+                        }
                         if (walk == 56) {
                             fichas[2].win = true;
                         }
@@ -117,9 +143,17 @@ function step(initial, next, turn) {
                     if (e.dataset.routeBlue == walk) {
                         //console.log(e);
                         walk = e.dataset.routeBlue;
-                        e.innerHTML = fichas[3].image;
-                        let image = document.getElementById('fichaRed');
-                        image.dataset.position = walk;
+                        e.innerHTML = fichas[turn].image;
+                        let image = document.getElementById('fichaBlue');
+                        if (image != null) {
+                            image.dataset.position = walk;
+                            image.dataset.cordsX = e.dataset.coordsX;
+                            image.dataset.cordsY = e.dataset.coordsY;
+                            fichas[turn].currentX = e.dataset.coordsX;
+                            fichas[turn].currentY = e.dataset.coordsY;
+                        } else {
+                            alert('ERROR!');
+                        }
                         if (walk == 56) {
                             fichas[3].win = true;
                         }
@@ -179,25 +213,17 @@ function ready() {
 }
 
 function play() {
-
-}
-
-dado.addEventListener('click', (ev) => {
-    tiroDado();
-    if (valor == 6) {
-        ready();
-    }
-
-
-    play();
     step(fichas[turno].current, valor, turno);
 
 
     fichas.forEach((e) => {
         if (e.win) {
+            winner.style.color = e.color
             winner.innerHTML = 'WIN!: ' + e.color;
             dado.style.visibility = 'hidden';
             reiniciar.style.visibility = 'visible';
+            text.style.visibility = 'hidden';
+            turno_text.style.visibility = 'hidden';
         }
     });
 
@@ -206,5 +232,14 @@ dado.addEventListener('click', (ev) => {
     //console.log(fichas[turno].color + ": " + fichas[turno].current);
 
     turno = (turno + 1) % 4;
+    turno_text.style.color = fichas[turno].color;
     turno_text.innerHTML = fichas[turno].color;
+}
+
+dado.addEventListener('click', (ev) => {
+    tiroDado();
+    if (valor == 6) {
+        ready();
+    }
+    play();
 });

@@ -9,6 +9,7 @@ body {
     flex-direction: column;
     text-align: center;
     justify-content: center;
+    font-family: 'Play', sans-serif;
 }
 
 .container {
@@ -40,13 +41,7 @@ body {
     border-radius: 20px;
 }
 
-.prueba{
-    background-image: url(./images/fichas/red.svg);
-    width: 50px;
-    height: 50px;
-}
-
-.reiniciar{
+.reiniciar {
     visibility: hidden;
 }
 
@@ -56,8 +51,24 @@ body {
     overflow: hidden;
 }
 
-.dado{
+.start {
+    margin: 0;
+}
+
+#start {
+    width: 10rem;
+    cursor: pointer;
+}
+
+.dado {
     visibility: hidden;
+    width: 10rem;
+    cursor: pointer;
+}
+
+.valor {
+    width: 10rem;
+    margin: 0;
 }
 
 @media (min-width: 575.98px) {
@@ -66,8 +77,6 @@ body {
         width: 80vw;
         height: 80vw;
     }
-
-    
 }
 
 @media (min-width: 767.98px) {
@@ -85,8 +94,10 @@ body {
         width: 40vw;
         height: 40vw;
     }
+
     .container {
         grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: none;
     }
 
 }

@@ -8,10 +8,10 @@ var routes = {
     yellow: [91, 92, 93, 94, 95, 81, 66, 51, 36, 21, 6, 7, 8, 23, 38, 53, 68, 83, 99, 100, 101, 102, 103, 104, 119, 134, 133, 132, 131, 130, 129, 143, 158, 173, 188, 203, 218, 217, 216, 201, 186, 171, 156, 141, 125, 124, 123, 122, 121, 120, 105, 106, 107, 108, 109, 110, 111]
 }
 var positionInit = {
-    red: [151,154,196,199],
-    yellow:[16,19,61,64],
-    blue:[25,28,70,73],
-    green:[160,163,205,208]
+    red: [151, 154, 196, 199],
+    yellow: [16, 19, 61, 64],
+    blue: [25, 28, 70, 73],
+    green: [160, 163, 205, 208]
 }
 
 function mapa(elemento) {
@@ -32,7 +32,7 @@ function mapa(elemento) {
 
             if ((cordsX <= 5 && cordsY <= 5) || (cordsY <= 5 && cordsY > 0 && cordsX == 7) || (cordsX == 6 && cordsY == 1)) {
                 cuadro.style.backgroundColor = 'yellow';
-                if (cordsX == 1 && cordsY == 4 || cordsX == 4 && cordsY == 4 || cordsX == 1 && cordsY == 1 || cordsX == 4 && cordsY == 1) {
+                if (cordsX == 1 && cordsY == 4 /*|| cordsX == 4 && cordsY == 4 || cordsX == 1 && cordsY == 1 || cordsX == 4 && cordsY == 1*/) {
                     cuadro.style.backgroundColor = 'white';
                     cuadro.innerHTML = '<img src="./images/fichas/yellow.svg" alt="">';
                 }
@@ -40,7 +40,7 @@ function mapa(elemento) {
 
             if ((cordsX <= 5 && cordsY >= 9) || (cordsY == 7 && cordsX <= 5 && cordsX > 0) || (cordsX == 1 && cordsY == 8)) {
                 cuadro.style.backgroundColor = 'green';
-                if (cordsX == 1 && cordsY == 10 || cordsX == 1 && cordsY == 13 || cordsX == 4 && cordsY == 10 || cordsX == 4 && cordsY == 13) {
+                if (cordsX == 1 && cordsY == 10 /*|| cordsX == 1 && cordsY == 13 || cordsX == 4 && cordsY == 10 || cordsX == 4 && cordsY == 13*/) {
                     cuadro.style.backgroundColor = 'white';
                     cuadro.innerHTML = '<img src="./images/fichas/green.svg" alt="">';
                 }
@@ -48,7 +48,7 @@ function mapa(elemento) {
 
             if ((cordsX >= 9 && cordsY <= 5) || (cordsX >= 9 && cordsY == 7 && cordsX < 14) || (cordsX == 13 && cordsY == 6)) {
                 cuadro.style.backgroundColor = 'red';
-                if (cordsX == 10 && cordsY == 1 || cordsX == 10 && cordsY == 4 || cordsX == 13 && cordsY == 1 || cordsX == 13 && cordsY == 4) {
+                if (cordsX == 10 && cordsY == 1 /*|| cordsX == 10 && cordsY == 4 || cordsX == 13 && cordsY == 1 || cordsX == 13 && cordsY == 4*/) {
                     cuadro.style.backgroundColor = 'white';
                     cuadro.innerHTML = '<img src="./images/fichas/red.svg" alt="">';
                 }
@@ -56,7 +56,7 @@ function mapa(elemento) {
 
             if ((cordsX >= 9 && cordsY >= 9) || (cordsX == 7 && cordsY >= 9 && cordsY < 14) || (cordsX == 8 && cordsY == 13)) {
                 cuadro.style.backgroundColor = 'blue';
-                if (cordsX == 10 && cordsY == 10 || cordsX == 10 && cordsY == 13 || cordsX == 13 && cordsY == 10 || cordsX == 13 && cordsY == 13) {
+                if (cordsX == 10 && cordsY == 10 /*|| cordsX == 10 && cordsY == 13 || cordsX == 13 && cordsY == 10 || cordsX == 13 && cordsY == 13*/) {
                     cuadro.style.backgroundColor = 'white';
                     cuadro.innerHTML = '<img src="./images/fichas/blue.svg" alt="">';
                 }
