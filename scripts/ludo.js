@@ -53,7 +53,7 @@ var fichas = [{
 start.addEventListener('click', (ev) => {
     dado.style.visibility = 'visible';
     turno_text.style.color = players[turno];
-    turno_text.innerHTML = players[turno];
+    turno_text.innerHTML = 'Turno de: ' + fichas[turno].color;
     start.style.visibility = 'hidden';
 });
 
@@ -233,7 +233,7 @@ function play() {
 
     turno = (turno + 1) % 4;
     turno_text.style.color = fichas[turno].color;
-    turno_text.innerHTML = fichas[turno].color;
+    turno_text.innerHTML = 'Turno de: ' + fichas[turno].color;
 }
 
 dado.addEventListener('click', (ev) => {
