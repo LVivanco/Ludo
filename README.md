@@ -1,2 +1,3 @@
-# ludo
- Little Ludo Proyect
+# Ludo
+ 
+ Projecto de un juego de ludo en JS
